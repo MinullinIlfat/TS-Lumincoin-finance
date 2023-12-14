@@ -1,0 +1,60 @@
+<section class="container">
+    <h1 class="title">Доходы и расходы</h1>
+    <div class="active">
+        <a href="#/createIncomeOrExpenses" class="btn active-btn btn-success me-2">Создать доход</a>
+        <a href="#/createIncomeOrExpenses" class="btn active-btn btn-danger">Создать расход</a>
+    </div>
+    <div class="menu d-flex align-items-center p-0">
+        <ul class="d-flex align-items-center p-0 m-0">
+            <li>
+                <button id="button-today" class="button active">Сегодня</button>
+            </li>
+            <li>
+                <button id="button-week" class="button">Неделя</button>
+            </li>
+            <li>
+                <button id="button-month" class="button">Месяц</button>
+            </li>
+            <li>
+                <button id="button-year" class="button">Год</button>
+            </li>
+            <li>
+                <button id="button-all" class="button">Все</button>
+            </li>
+            <li>
+                <button id="button-interval" class="button">Интервал</button>
+            </li>
+        </ul>
+        <label for="from">с</label>
+        <input type="text" id="from" name="from" placeholder="Дата">
+        <label for="to">по</label>
+        <input type="text" id="to" name="to" placeholder="Дата">
+    </div>
+    <table id="table" class="table text-center">
+        <thead>
+        <tr class="table-head">
+            <th class="p-3">№ операции</th>
+            <th class="p-3">Тип</th>
+            <th class="p-3">Категория</th>
+            <th class="p-3">Сумма</th>
+            <th class="p-3">Дата</th>
+            <th class="p-3">Комментарий</th>
+            <th class="p-3 icon-svg"></th>
+        </tr>
+        </thead>
+        <tbody id="table-body">
+
+        </tbody>
+    </table>
+    <div class="popup" id="popup-expense-and-income">
+        <div class="popup-box">
+            <div class="popup-text mb-4">
+                Вы действительно хотите удалить операцию?
+            </div>
+            <div class="popup-active">
+                <button id="popup-delete-operation" class="btn active-btn btn-success me-3 mb-0">Да, удалить</button>
+                <a href="#/expensesAndIncome" class="btn active-btn btn-danger mb-0">Не удалять</a>
+            </div>
+        </div>
+    </div>
+</section>

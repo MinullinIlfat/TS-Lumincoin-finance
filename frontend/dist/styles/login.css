@@ -1,0 +1,56 @@
+section {
+    justify-content: center;
+}
+
+.container {
+    padding: 280px 0;
+}
+
+.logo {
+    margin-bottom: 60px;
+}
+
+.form-input {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.input-group {
+    width: 397px;
+}
+
+.input-group span {
+    background: #E9ECEF;
+}
+
+.input-group input {
+    font-family: inherit !important;
+}
+
+.form-check {
+    font-size: 12px;
+    line-height: 23px;
+}
+
+.btn {
+    font-family: Roboto-Medium, sans-serif;
+    font-size: 15px;
+    line-height: 18px;
+}
+
+.registration {
+    font-size: 12px;
+    line-height: 14px;
+}
+
+.registration a {
+    color: #0D6EFD;
+}
+
+.sidebar {
+    display: none !important;
+}
+
+

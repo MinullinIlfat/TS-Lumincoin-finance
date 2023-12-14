@@ -1,0 +1,28 @@
+<section class="container">
+    <h1 class="title">Редактирование дохода/расхода</h1>
+    <div class="create create-value">
+        <select name="language" class="mb-2" id="create-type-operation">
+            <option id="one" value="income">доход</option>
+            <option id="two" value="expense">расход</option>
+        </select>
+        <select name="language" class="mb-2" id="create-category-operation">
+
+        </select>
+        <input type="number" id="create-amount-operation" placeholder="500$" class="mb-2">
+        <input type="date" value="" id="create-date-operation" class="mb-2">
+        <input type="text" id="create-comment-operation" placeholder="Комментарий..." class="mb-2">
+        <div class="create-active mt-3">
+            <a id="create-operation-save-btn" href="#/expensesAndIncome" class="btn btn-success me-2">Сохранить</a>
+            <a href="#/expensesAndIncome" class="btn btn-danger">Отмена</a>
+        </div>
+    </div>
+</section>
+<div class="popup">
+    <div class="popup-text mb-4">
+        Вы действительно хотите удалить операцию?
+    </div>
+    <div class="popup-active">
+        <button class="btn active-btn btn-success me-3 mb-0">Да, удалить</button>
+        <button class="btn active-btn btn-danger mb-0">Не удалять</button>
+    </div>
+</div>

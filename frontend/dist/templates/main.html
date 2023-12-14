@@ -1,0 +1,54 @@
+<section class="container">
+    <h1 class="title">Главная</h1>
+    <div class="menu d-flex align-items-center p-0">
+        <ul class="d-flex align-items-center p-0 m-0">
+            <li>
+                <button id="button-today" class="button active">Сегодня</button>
+            </li>
+            <li>
+                <button id="button-week" class="button">Неделя</button>
+            </li>
+            <li>
+                <button id="button-month" class="button">Месяц</button>
+            </li>
+            <li>
+                <button id="button-year" class="button">Год</button>
+            </li>
+            <li>
+                <button id="button-all" class="button">Все</button>
+            </li>
+            <li>
+                <button id="button-interval" class="button">Интервал</button>
+            </li>
+        </ul>
+        <label for="from">с</label>
+        <input type="text" id="from" name="from" placeholder="Дата">
+        <label for="to">по</label>
+        <input type="text" id="to" name="to" placeholder="Дата">
+    </div>
+    <div class="charts">
+        <div>
+            <span class="title">
+                Доходы
+            </span>
+            <div class="chart">
+                <canvas id="incomeChart">
+
+                </canvas>
+            </div>
+        </div>
+        <div class="divider">
+
+        </div>
+        <div>
+            <span class="title">
+                Расходы
+            </span>
+            <div class="chart">
+                <canvas id="expensesChart">
+
+                </canvas>
+            </div>
+        </div>
+    </div>
+</section>

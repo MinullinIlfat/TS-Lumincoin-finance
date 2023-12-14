@@ -1,0 +1,105 @@
+.sidebar {
+    padding-top: 40px;
+    padding-bottom: 40px;
+    box-sizing: border-box;
+    height: 1024px;
+}
+
+.sidebar ul li a:active, .sidebar ul li a:active path {
+    background: #0D6EFD;
+    color: white !important;
+    fill: white !important;;
+}
+
+.sidebar-category svg {
+    margin-left: 71px;
+    transform: rotate(90deg);
+}
+
+.sidebar-category a {
+    width: 174px;
+}
+
+.collapsed svg {
+    transform: rotate(0);
+}
+
+.sidebar-main, .sidebar-finance, .sidebar-category, .sidebar-dropdown-name, .sidebar-category button {
+    font-size: 14px !important;
+    line-height: 16px !important;
+    color: #052C65 !important;
+}
+
+.sidebar ul {
+    width: 178px;
+}
+
+.sidebar li {
+    width: 179px;
+    box-sizing: border-box;
+}
+
+.sidebar-main:hover a, .sidebar-finance:hover a, .sidebar-category-collapse:hover, .collapse ul:hover {
+    background: #0D6EFD;
+    border-radius: 5px;
+    color: white !important;
+    fill: white !important;
+}
+
+.collapse ul:hover a, .sidebar-category-collapse:hover a, .sidebar-category-collapse:hover a svg {
+    color: white !important;
+    fill: white !important;
+}
+
+.sidebar-main:hover a svg, .sidebar-finance:hover a svg {
+    color: white !important;
+    fill: white !important;
+}
+
+
+.sidebar-main a, .sidebar-finance a, .sidebar-category-collapse a {
+    padding: 12px 4px 12px 16px !important;
+}
+
+.sidebar button {
+    font-family: Roboto-Regular, sans-serif !important;
+}
+
+.sidebar-balance {
+    color: #052C65;
+    font-size: 14px;
+    line-height: 16px;
+    font-family: Roboto-Medium, sans-serif;
+}
+
+.sidebar-balance span {
+    color: #0D6EFD;
+}
+
+.sidebar-dropdown-icon {
+    width: 36px;
+    height: 36px;
+    background: #D9D9D9;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 16px;
+}
+
+.dropdown-toggle::after {
+    display: none;
+}
+
+.sidebar-dropdown-name-exit {
+    margin: 10px 0 0 10px;
+    color: white;
+    padding: 1px 5px;
+    border-radius: 10px;
+    background: #0D6EFD;
+    border: 0;
+    display: none;
+    text-decoration: none;
+    text-align: center;
+}
+
