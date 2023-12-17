@@ -4,6 +4,7 @@ import config from "../../config/config";
 import {UserInfoType} from "../types/user-info.type";
 import {DeleteCategoryType} from "../types/delete-category.type";
 import {DefaultResponseType} from "../types/default-response.type";
+import {GetOperationType} from "../types/get-operation.type";
 
 export class ExpensesAndIncome {
     private buttonElements: NodeListOf<Element>;
@@ -94,9 +95,9 @@ export class ExpensesAndIncome {
         if (this.buttonAll) {
             this.buttonAll.onclick = async function () {
                 try {
-                    const result = await CustomHttp.request(config.host + '/operations/?period=all');
-                    if (result) {
-                        that.showTableElements(result)
+                    const result: GetOperationType[] | DefaultResponseType = await CustomHttp.request(config.host + '/operations/?period=all');
+                    if (result as GetOperationType[]) {
+                        that.showTableElements(result as GetOperationType[])
                     }
                 } catch (error) {
                     console.log(error);
@@ -106,9 +107,9 @@ export class ExpensesAndIncome {
         if (this.buttonWeek) {
             this.buttonWeek.onclick = async function () {
                 try {
-                    const result = await CustomHttp.request(config.host + '/operations/?period=week');
-                    if (result) {
-                        that.showTableElements(result)
+                    const result: GetOperationType[] | DefaultResponseType = await CustomHttp.request(config.host + '/operations/?period=week');
+                    if (result as GetOperationType[]) {
+                        that.showTableElements(result as GetOperationType[])
                     }
                 } catch (error) {
                     console.log(error);
@@ -120,9 +121,9 @@ export class ExpensesAndIncome {
         if (this.buttonMonth) {
             this.buttonMonth.onclick = async function () {
                 try {
-                    const result = await CustomHttp.request(config.host + '/operations/?period=month');
-                    if (result) {
-                        that.showTableElements(result)
+                    const result: GetOperationType[] | DefaultResponseType = await CustomHttp.request(config.host + '/operations/?period=month');
+                    if (result as GetOperationType[]) {
+                        that.showTableElements(result as GetOperationType[])
                     }
                 } catch (error) {
                     console.log(error);
@@ -133,9 +134,9 @@ export class ExpensesAndIncome {
         if (this.buttonYear) {
             this.buttonYear.onclick = async function () {
                 try {
-                    const result = await CustomHttp.request(config.host + '/operations/?period=year');
-                    if (result) {
-                        that.showTableElements(result)
+                    const result: GetOperationType[] | DefaultResponseType = await CustomHttp.request(config.host + '/operations/?period=year');
+                    if (result as GetOperationType[]) {
+                        that.showTableElements(result as GetOperationType[])
                     }
                 } catch (error) {
                     console.log(error);
@@ -146,9 +147,9 @@ export class ExpensesAndIncome {
         if (this.buttonToday) {
             this.buttonToday.onclick = async function () {
                 try {
-                    const result = await CustomHttp.request(config.host + '/operations/?period=today');
-                    if (result) {
-                        that.showTableElements(result)
+                    const result: GetOperationType[] | DefaultResponseType = await CustomHttp.request(config.host + '/operations/?period=today');
+                    if (result as GetOperationType[]) {
+                        that.showTableElements(result as GetOperationType[])
                     }
                 } catch (error) {
                     console.log(error);
@@ -168,9 +169,9 @@ export class ExpensesAndIncome {
                     to = to[2] + '-' + to[0] + '-' + to[1]
 
                     try {
-                        const result = await CustomHttp.request(config.host + '/operations/?period=interval&dateFrom=' + from + '&dateTo=' + to);
-                        if (result) {
-                            that.showTableElements(result)
+                        const result: GetOperationType[] | DefaultResponseType = await CustomHttp.request(config.host + '/operations/?period=interval&dateFrom=' + from + '&dateTo=' + to);
+                        if (result as GetOperationType[]) {
+                            that.showTableElements(result as GetOperationType[])
                         }
                     } catch (error) {
                         console.log(error);
@@ -289,14 +290,14 @@ export class ExpensesAndIncome {
 
     }
 
-    private showTableElements(result: any): void {
+    private showTableElements(result: GetOperationType[]): void {
         const that: ExpensesAndIncome = this
         let counter: number = 1
 
-        result.forEach((item: any) => {
+        result.forEach((item: GetOperationType) => {
             for (let i = 0; i < this.btns.length; i++) {
                 this.btns[i].addEventListener("click", function () {
-                    let tableItems: HTMLElement | null = document.getElementById(item.id);
+                    let tableItems: HTMLElement | null = document.getElementById(item.id.toString());
                     if (tableItems) {
                         tableItems.remove()
                     }
@@ -304,7 +305,7 @@ export class ExpensesAndIncome {
             }
 
             const tableItem: HTMLElement | null = document.createElement('tr');
-            tableItem.setAttribute('id', item.id);
+            tableItem.setAttribute('id', item.id.toString());
             tableItem.className = 'tr-item';
 
             const tableItemScope: HTMLElement | null = document.createElement('th');
@@ -329,7 +330,7 @@ export class ExpensesAndIncome {
             const tableItemAmount: HTMLElement | null = document.createElement('td');
             tableItemAmount.innerText = item.amount + '$';
 
-            let str = item.date;
+            let str = item.date.toString();
             let arr = str.split('-');
             let res = arr[2] + '.' + arr[1] + '.' + arr[0];
 

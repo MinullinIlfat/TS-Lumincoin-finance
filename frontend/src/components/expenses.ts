@@ -78,10 +78,10 @@ export class Expenses {
     private showExpenseElements(result: GetCategoryType[] | DefaultResponseType): void {
         const categoryItems: HTMLElement | null = document.getElementById('category-expense-items');
         if (categoryItems) {
-            (result as GetCategoryType[]).forEach((item: any) => {
+            (result as GetCategoryType[]).forEach((item: GetCategoryType) => {
                 const categoryItem: HTMLElement | null = document.createElement('div');
                 categoryItem.className = 'category-item';
-                categoryItem.setAttribute('id', item.id)
+                categoryItem.setAttribute('id', item.id.toString())
 
                 const categoryItemName: HTMLElement | null = document.createElement('div');
                 categoryItemName.className = 'category-item-name';
@@ -136,8 +136,8 @@ export class Expenses {
                         popupDeleteCategory.onclick = function () {
                             let resultId: string | null = item.parentElement.parentElement.id
                             try {
-                                const result: DeleteCategoryType | DefaultResponseType  = CustomHttp.request(config.host + '/categories/expense/' + resultId, "DELETE");
-                                if (result) {
+                                const result: Promise<DeleteCategoryType | DefaultResponseType> = CustomHttp.request(config.host + '/categories/expense/' + resultId, "DELETE");
+                                if (result as unknown) {
                                     location.href = '#/expenses'
                                 }
                             } catch (error) {

@@ -1,6 +1,6 @@
 export type PostOperationType = {
     amount: number,
-    date: string,
+    date: number,
     comment:string,
     user_id: number
 }

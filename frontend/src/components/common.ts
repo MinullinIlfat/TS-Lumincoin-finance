@@ -2,7 +2,7 @@ let exit: HTMLElement | null = document.getElementById('sidebar-dropdown-name-ex
 let profileFullNameElement: HTMLElement | null = document.getElementById('profile-full-name');
 
 if (profileFullNameElement) {
-    profileFullNameElement.onclick = function () {
+    profileFullNameElement.onclick = function ():void {
         if (exit) {
             if (exit.style.display === 'block') {
                 exit.style.display = 'none';

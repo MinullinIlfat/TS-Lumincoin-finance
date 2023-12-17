@@ -140,7 +140,7 @@ export class Income {
                             let resultId = item.parentElement.parentElement.id
                             try {
                                 const result: Promise<DeleteCategoryType | DefaultResponseType> = CustomHttp.request(config.host + '/categories/income/' + resultId, "DELETE");
-                                if (result) {
+                                if (result as unknown) {
                                     location.href = '#/income';
                                 }
                             } catch (error) {

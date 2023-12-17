@@ -72,9 +72,9 @@ export class EditIncomeOrExpenses {
 
                         this.createTypeOperation.addEventListener('change', (e) => {
                             if (this.createTypeOperation && this.createCategoryOperation
-                                && (this.createTypeOperation as HTMLInputElement).value === 'expense') {
+                                && this.createTypeOperation.value === 'expense') {
                                 option.style.display = 'none'
-                                (this.createCategoryOperation as HTMLInputElement).value = ' '
+                                this.createCategoryOperation.value = ' '
                             } else {
                                 option.style.display = 'block'
                             }
@@ -87,16 +87,16 @@ export class EditIncomeOrExpenses {
                         if (item.title === category && this.createCategoryOperation) {
                             this.createCategoryOperation.value = category
                             this.category = item.id
-                            return this.category
+                            // return this.category
                         }
                     })
                 }
                 if (this.createCategoryOperation) {
                     this.createCategoryOperation.addEventListener('change', (e) => {
                         (result as GetCategoryType[]).forEach((item:GetCategoryType) => {
-                            if (item.title && (this.createCategoryOperation as HTMLInputElement).value === item.title) {
+                            if (item.title && this.createCategoryOperation &&this.createCategoryOperation.value === item.title) {
                                 this.category = item.id
-                                return this.category
+                                // return this.category
                             }
                         })
                     })
@@ -119,7 +119,7 @@ export class EditIncomeOrExpenses {
                 optionExp.innerText = itemExp.title
 
                 if (this.createTypeOperation) {
-                    let indexSelected: number = this.createTypeOperation.selectedIndex,
+                    let indexSelected: string | null = this.createTypeOperation.selectedIndex,
                         option = this.createTypeOperation.querySelectorAll('option')[indexSelected];
                     let selectedId: string | null = option.getAttribute('id');
 
@@ -149,7 +149,7 @@ export class EditIncomeOrExpenses {
                     if (item.title === category && this.createCategoryOperation) {
                         this.createCategoryOperation.value = category
                         this.category = item.id
-                        return this.category
+                        // return this.category
                     }
                 })
             }
@@ -158,7 +158,7 @@ export class EditIncomeOrExpenses {
                     (resultExpense as GetCategoryType[]).forEach((item: GetCategoryType) => {
                         if (item.title && this.createCategoryOperation && (this.createCategoryOperation as HTMLInputElement).value === item.title) {
                             this.category = item.id
-                            return this.category
+                            // return this.category
                         }
                     })
                 })
@@ -240,7 +240,7 @@ export class EditIncomeOrExpenses {
                             date: (that.createDateOperation as HTMLInputElement).value,
                             comment: (that.createCommentOperation as HTMLInputElement).value
                         });
-                        if (result) {
+                        if (result as unknown) {
                             location.href = '#/expensesAndIncome'
                         }
                     } catch (error) {

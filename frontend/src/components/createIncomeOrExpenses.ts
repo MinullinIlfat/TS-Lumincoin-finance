@@ -100,7 +100,8 @@ export class CreateIncomeOrExpenses {
 
                     this.newCreateCategoryOperation.appendChild(optionExp)
                     this.newCreateTypeOperation.addEventListener('change', (e) => {
-                        if (this.newCreateTypeOperation&& this.newCreateCategoryOperation && this.newCreateTypeOperation.value === 'income') {
+                        if (this.newCreateTypeOperation && this.newCreateCategoryOperation
+                            && this.newCreateTypeOperation.value === 'income') {
                             optionExp.style.display = 'none';
                             this.newCreateCategoryOperation.value = ' ';
                         } else {
@@ -142,7 +143,7 @@ export class CreateIncomeOrExpenses {
                             comment: that.newCreateCommentOperation.value
                         });
 
-                        if (result) {
+                        if (result as unknown) {
                             location.href = '#/IncomeAndExpense';
                         }
                     } catch (error) {

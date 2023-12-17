@@ -1,6 +1,9 @@
 import {Auth} from "../services/auth";
 import {CustomHttp} from "../services/custom-http";
 import config from "../../config/config";
+import {UserInfoType} from "../types/user-info.type";
+import {GetOperationType} from "../types/get-operation.type";
+import {DefaultResponseType} from "../types/default-response.type";
 
 export class Main {
     private buttonElements: NodeListOf<Element>;
@@ -67,17 +70,17 @@ export class Main {
 
     private async init(): Promise<void> {
         const that: Main = this
-        const userInfo = Auth.getUserInfo();
+        const userInfo: UserInfoType | null = Auth.getUserInfo();
         if (!userInfo) {
             location.href = '#/login'
         }
         if (this.buttonAll) {
-            this.buttonAll.onclick = async function () {
+            this.buttonAll.onclick = async function ():Promise<void> {
                 try {
-                    const result = await CustomHttp.request(config.host + '/operations/?period=all');
-                    if (result) {
-                        that.testChart(result)
-                        that.activeElement(result)
+                    const result: GetOperationType[] | DefaultResponseType = await CustomHttp.request(config.host + '/operations/?period=all');
+                    if (result as GetOperationType[]) {
+                        that.testChart(result as GetOperationType[])
+                        that.activeElement(result as GetOperationType[])
                     }
                 } catch (error) {
                     console.log(error);
@@ -86,12 +89,12 @@ export class Main {
         }
 
         if (this.buttonWeek) {
-            this.buttonWeek.onclick = async function () {
+            this.buttonWeek.onclick = async function ():Promise<void> {
                 try {
-                    const result = await CustomHttp.request(config.host + '/operations/?period=week');
-                    if (result) {
-                        that.testChart(result)
-                        that.activeElement(result)
+                    const result: GetOperationType[] | DefaultResponseType = await CustomHttp.request(config.host + '/operations/?period=week');
+                    if (result as GetOperationType[]) {
+                        that.testChart(result as GetOperationType[])
+                        that.activeElement(result as GetOperationType[])
                     }
                 } catch (error) {
                     console.log(error);
@@ -100,12 +103,12 @@ export class Main {
         }
 
         if (this.buttonMonth) {
-            this.buttonMonth.onclick = async function () {
+            this.buttonMonth.onclick = async function ():Promise<void> {
                 try {
-                    const result = await CustomHttp.request(config.host + '/operations/?period=month');
-                    if (result) {
-                        that.testChart(result)
-                        that.activeElement(result)
+                    const result: GetOperationType[] | DefaultResponseType = await CustomHttp.request(config.host + '/operations/?period=month');
+                    if (result as GetOperationType[]) {
+                        that.testChart(result as GetOperationType[])
+                        that.activeElement(result as GetOperationType[])
                     }
                 } catch (error) {
                     console.log(error);
@@ -114,12 +117,12 @@ export class Main {
         }
 
         if (this.buttonYear) {
-            this.buttonYear.onclick = async function () {
+            this.buttonYear.onclick = async function ():Promise<void> {
                 try {
-                    const result = await CustomHttp.request(config.host + '/operations/?period=year');
-                    if (result) {
-                        that.testChart(result)
-                        that.activeElement(result)
+                    const result: GetOperationType[] | DefaultResponseType = await CustomHttp.request(config.host + '/operations/?period=year');
+                    if (result as GetOperationType[]) {
+                        that.testChart(result as GetOperationType[])
+                        that.activeElement(result as GetOperationType[])
                     }
                 } catch (error) {
                     console.log(error);
@@ -128,12 +131,12 @@ export class Main {
         }
 
         if (this.buttonToday) {
-            this.buttonToday.onclick = async function () {
+            this.buttonToday.onclick = async function ():Promise<void> {
                 try {
-                    const result = await CustomHttp.request(config.host + '/operations/?period=today');
-                    if (result) {
-                        that.testChart(result)
-                        that.activeElement(result)
+                    const result: GetOperationType[] | DefaultResponseType = await CustomHttp.request(config.host + '/operations/?period=today');
+                    if (result as GetOperationType[]) {
+                        that.testChart(result as GetOperationType[])
+                        that.activeElement(result as GetOperationType[])
                     }
                 } catch (error) {
                     console.log(error);
@@ -143,7 +146,7 @@ export class Main {
         }
 
         if (this.buttonInterval) {
-            this.buttonInterval.onclick = async function () {
+            this.buttonInterval.onclick = async function ():Promise<void> {
                 if (that.buttonIntervalFrom && that.buttonIntervalTo) {
                     let from: any = that.buttonIntervalFrom.value.split('/')
 
@@ -152,10 +155,10 @@ export class Main {
                     to = to[2] + '-' + to[0] + '-' + to[1]
 
                     try {
-                        const result = await CustomHttp.request(config.host + '/operations/?period=interval&dateFrom=' + from + '&dateTo=' + to);
-                        if (result) {
-                            that.testChart(result)
-                            that.activeElement(result)
+                        const result: GetOperationType[] | DefaultResponseType = await CustomHttp.request(config.host + '/operations/?period=interval&dateFrom=' + from + '&dateTo=' + to);
+                        if (result as GetOperationType[]) {
+                            that.testChart(result as GetOperationType[])
+                            that.activeElement(result as GetOperationType[])
                         }
                     } catch (error) {
                         console.log(error);
@@ -198,7 +201,7 @@ export class Main {
         });
     }
 
-    testChart(result:any) {
+    testChart(result:GetOperationType[]) {
         let expenseArrAmount:string[] |null = [];
         let expenseArrCategory:string[] |null = [];
         result.forEach((item: any) => {
@@ -292,7 +295,7 @@ export class Main {
         })
     }
 
-    private activeElement(result:any):void {
+    private activeElement(result:GetOperationType[]):void {
         // const that: Main = this
         if (this.sidebarMain) {
             this.sidebarMain.classList.add('nav-link', 'active');
@@ -315,8 +318,8 @@ export class Main {
             });
         }
 
-        result.forEach((item: any) => {
-            let tableItem: HTMLElement | null = document.getElementById(item.id);
+        result.forEach((item: GetOperationType) => {
+            let tableItem: HTMLElement | null = document.getElementById(item.id.toString());
             if (tableItem) {
                 tableItem.remove()
             }
