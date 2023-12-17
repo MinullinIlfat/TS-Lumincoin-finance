@@ -1,6 +1,8 @@
 import {Auth} from "../services/auth";
 import {CustomHttp} from "../services/custom-http";
 import config from "../../config/config";
+import {PutCategoryType} from "../types/put-category.type";
+import {DefaultResponseType} from "../types/default-response.type";
 
 export class EditCategoryIncome {
     readonly inputNameElement: HTMLInputElement | null;
@@ -26,11 +28,11 @@ export class EditCategoryIncome {
 
     newNameIncome() {
         const that: EditCategoryIncome = this;
-        let resultId: number | string | null = localStorage.getItem('BlockId');
+        let resultId: string | null = localStorage.getItem('BlockId');
         if (resultId) {
             JSON.parse(resultId);
             resultId = resultId.replace(/[^1-9]/gi, ' ');
-            resultId = parseInt(resultId);
+            resultId = parseInt(resultId).toString();
         }
         if (this.btnSaveElement) {
             this.btnSaveElement.onclick = function () {
@@ -39,7 +41,7 @@ export class EditCategoryIncome {
                     location.href = '#/login';
                 }
                 try {
-                    const result: Promise<any> = CustomHttp.request(config.host + '/categories/income/' + resultId, "PUT", {
+                    const result: Promise<PutCategoryType | DefaultResponseType> = CustomHttp.request(config.host + '/categories/income/' + resultId, "PUT", {
                         title: that.inputNameElement?.value
                     });
                 } catch (error) {

@@ -199,18 +199,18 @@ export class Main {
     }
 
     testChart(result:any) {
-        let expenseArrAmount:any[] = [];
-        let expenseArrCategory:any[] = [];
+        let expenseArrAmount:string[] |null = [];
+        let expenseArrCategory:string[] |null = [];
         result.forEach((item: any) => {
-            if (item.type === 'expense') {
+            if (item.type === 'expense' && expenseArrAmount && expenseArrCategory) {
                 expenseArrAmount.push(item.amount)
                 expenseArrCategory.push(item.category)
             }
         })
-        let incomeArrAmount:any[] = [];
-        let incomeArrCategory:any[] = [];
+        let incomeArrAmount:string[] |null = [];
+        let incomeArrCategory:string[] |null = [];
         result.forEach((item: any) => {
-            if (item.type === 'income') {
+            if (item.type === 'income' && incomeArrAmount && incomeArrCategory) {
                 incomeArrAmount.push(item.amount)
                 incomeArrCategory.push(item.category)
             }
@@ -307,14 +307,16 @@ export class Main {
 
         for (let i = 0; i < this.btns.length; i++) {
             this.btns[i].addEventListener("click", function () {
-                let current = document.getElementsByClassName("button active");
-                current[0].className = current[0].className.replace(" active", "");
-                this.className += " active";
+                let current: HTMLElement | null = document.getElementsByClassName("button active");
+                if (current) {
+                    current[0].className = current[0].className.replace(" active", "");
+                    this.className += " active";
+                }
             });
         }
 
         result.forEach((item: any) => {
-            let tableItem = document.getElementById(item.id);
+            let tableItem: HTMLElement | null = document.getElementById(item.id);
             if (tableItem) {
                 tableItem.remove()
             }

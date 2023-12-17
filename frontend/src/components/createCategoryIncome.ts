@@ -1,5 +1,7 @@
 import {CustomHttp} from "../services/custom-http";
 import config from "../../config/config";
+import {PostOperationType} from "../types/post-operation.type";
+import {DefaultResponseType} from "../types/default-response.type";
 
 export class CreateCategoryIncome {
     readonly inputNameCreateIncome: HTMLInputElement | null;
@@ -17,7 +19,7 @@ export class CreateCategoryIncome {
             this.createCategoryIncomeBtn.onclick = function () {
                 let categoryName: string | undefined = that.inputNameCreateIncome?.value;
                 try {
-                    const result = CustomHttp.request(config.host + '/categories/income', "POST", {
+                    const result: Promise<PostOperationType | DefaultResponseType> = CustomHttp.request(config.host + '/categories/income', "POST", {
                         title: categoryName
                     });
                 } catch (error) {

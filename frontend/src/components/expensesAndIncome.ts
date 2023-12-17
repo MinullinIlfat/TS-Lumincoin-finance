@@ -2,42 +2,44 @@ import {Auth} from "../services/auth";
 import {CustomHttp} from "../services/custom-http";
 import config from "../../config/config";
 import {UserInfoType} from "../types/user-info.type";
+import {DeleteCategoryType} from "../types/delete-category.type";
+import {DefaultResponseType} from "../types/default-response.type";
 
 export class ExpensesAndIncome {
     private buttonElements: NodeListOf<Element>;
     private svgElements: NodeListOf<Element>;
     private collapseButtonElements: NodeListOf<Element>;
 
-    private sidebarFinance: HTMLElement | null;
-    private sidebarFinanceText: HTMLElement | null;
-    private sidebarFinanceSvg: HTMLElement | null;
+    readonly sidebarFinance: HTMLElement | null;
+    readonly sidebarFinanceText: HTMLElement | null;
+    readonly sidebarFinanceSvg: HTMLElement | null;
 
-    private orderCollapseElement: HTMLElement | null;
-    private categoryButtonElement: HTMLElement | null;
-    private categorySvgElement: HTMLElement | null;
-    private sidebarCategoryElement: HTMLElement | null;
+    readonly orderCollapseElement: HTMLElement | null;
+    readonly categoryButtonElement: HTMLElement | null;
+    readonly categorySvgElement: HTMLElement | null;
+    readonly sidebarCategoryElement: HTMLElement | null;
 
-    private sidebarMain: HTMLElement | null;
-    private sidebarMainText: HTMLElement | null;
-    private sidebarMainSvg: HTMLElement | null;
+    readonly sidebarMain: HTMLElement | null;
+    readonly sidebarMainText: HTMLElement | null;
+    readonly sidebarMainSvg: HTMLElement | null;
 
-    private sidebarCategoryCollapseElements: HTMLElement | null;
+    readonly sidebarCategoryCollapseElements: HTMLElement | null;
 
     private popupExpAndInc: HTMLElement | null;
     private popupDeleteOperation: HTMLElement | null;
 
-    private buttonAll: HTMLElement | null;
-    private buttonWeek: HTMLElement | null;
-    private buttonMonth: HTMLElement | null;
-    private buttonYear: HTMLElement | null;
-    private buttonToday: HTMLElement | null;
-    private buttonInterval: HTMLElement | null;
+    readonly buttonAll: HTMLElement | null;
+    readonly buttonWeek: HTMLElement | null;
+    readonly buttonMonth: HTMLElement | null;
+    readonly buttonYear: HTMLElement | null;
+    readonly buttonToday: HTMLElement | null;
+    readonly buttonInterval: HTMLElement | null;
     private buttonIntervalFrom: HTMLElement | null;
     private buttonIntervalTo: HTMLElement | null;
 
     private btns: NodeListOf<Element>;
 
-    private tableBody: HTMLElement | null;
+    readonly tableBody: HTMLElement | null;
 
     constructor() {
         this.buttonElements = document.querySelectorAll('.button-element')
@@ -159,8 +161,8 @@ export class ExpensesAndIncome {
         if (this.buttonInterval) {
             this.buttonInterval.onclick = async function () {
                 if (that.buttonIntervalFrom && that.buttonIntervalTo) {
-                    let from: any = (that.buttonIntervalFrom as HTMLInputElement).value.split('/')
-                    let to: any = (that.buttonIntervalTo as HTMLInputElement).value.split('/')
+                    let from: string[] | null = (that.buttonIntervalFrom as HTMLInputElement).value.split('/')
+                    let to: string[] | null = (that.buttonIntervalTo as HTMLInputElement).value.split('/')
 
                     from = from[2] + '-' + from[0] + '-' + from[1]
                     to = to[2] + '-' + to[0] + '-' + to[1]
@@ -373,7 +375,7 @@ export class ExpensesAndIncome {
                 this.tableBody.appendChild(tableItem);
             }
 
-            const editOperationElements = document.querySelectorAll('.edit-operation')
+            const editOperationElements:NodeListOf<Element> = document.querySelectorAll('.edit-operation')
             editOperationElements.forEach((item:any) => {
                 item.onclick = function () {
                     const type:string | null = item.parentElement.previousElementSibling.previousElementSibling.previousElementSibling.previousElementSibling.previousElementSibling.textContent
@@ -391,7 +393,7 @@ export class ExpensesAndIncome {
                 }
             })
 
-            const deleteBtnElement = document.querySelectorAll('.delete-btn')
+            const deleteBtnElement: NodeListOf<Element> = document.querySelectorAll('.delete-btn')
             deleteBtnElement.forEach((item:any) => {
                 item.onclick = function () {
                     if (that.popupExpAndInc) {
@@ -401,7 +403,7 @@ export class ExpensesAndIncome {
                         that.popupDeleteOperation.onclick = function () {
                             let resultId = item.parentElement.parentElement.id
                             try {
-                                const result = CustomHttp.request(config.host + '/operations/' + resultId, "DELETE");
+                                const result: any = CustomHttp.request(config.host + '/operations/' + resultId, "DELETE");
                                 if (result) {
                                     location.href = '#/expensesAndIncome'
                                 }

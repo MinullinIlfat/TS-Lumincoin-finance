@@ -2,6 +2,9 @@ import config from "../../config/config";
 import {Auth} from "../services/auth";
 import {CustomHttp} from "../services/custom-http";
 import {UserInfoType} from "../types/user-info.type";
+import {GetCategoryType} from "../types/get-category.type";
+import {DefaultResponseType} from "../types/default-response.type";
+import {DeleteCategoryType} from "../types/delete-category.type";
 
 export class Income {
     readonly incomeElement: HTMLElement | null;
@@ -67,22 +70,22 @@ export class Income {
         }
 
         try {
-            const result: Promise<any> = await CustomHttp.request(config.host + '/categories/income');
+            const result: GetCategoryType[] | DefaultResponseType = await CustomHttp.request(config.host + '/categories/income');
             if (result) {
-                this.showIncomeElements(result)
+                this.showIncomeElements(result as GetCategoryType[])
             }
         } catch (error) {
             console.log(error);
         }
     }
 
-    private showIncomeElements(result: any): void {
-        const categoryItems = document.getElementById('category-income-items');
+    private showIncomeElements(result: GetCategoryType[]): void {
+        const categoryItems: HTMLElement | null = document.getElementById('category-income-items');
         if (categoryItems) {
-            result.forEach((item: HTMLElement) => {
+            result.forEach((item: GetCategoryType) => {
                 const categoryItem: HTMLElement | null = document.createElement('div');
                 categoryItem.className = 'category-item';
-                categoryItem.setAttribute('id', item.id)
+                categoryItem.setAttribute('id', item.id.toString())
 
                 const categoryItemName: HTMLElement | null = document.createElement('div');
                 categoryItemName.className = 'category-item-name';
@@ -117,8 +120,8 @@ export class Income {
             const editBtnElements: NodeListOf<Element> = document.querySelectorAll('.edit-btn-income')
             editBtnElements.forEach((item: any) => {
                 item.onclick = function () {
-                    const result = item.parentElement.previousElementSibling.textContent
-                    const resultId = item.parentElement.parentElement.id
+                    const result: string | null = item.parentElement.previousElementSibling.textContent
+                    const resultId:string | null = item.parentElement.parentElement.id
                     localStorage.setItem('BlockName', JSON.stringify(result))
                     localStorage.setItem('BlockId', JSON.stringify(resultId))
                 }
@@ -136,7 +139,7 @@ export class Income {
                         popupDeleteCategory.onclick = function () {
                             let resultId = item.parentElement.parentElement.id
                             try {
-                                const result: any = CustomHttp.request(config.host + '/categories/income/' + resultId, "DELETE");
+                                const result: Promise<DeleteCategoryType | DefaultResponseType> = CustomHttp.request(config.host + '/categories/income/' + resultId, "DELETE");
                                 if (result) {
                                     location.href = '#/income';
                                 }

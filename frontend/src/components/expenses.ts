@@ -2,28 +2,31 @@ import {Auth} from "../services/auth";
 import {CustomHttp} from "../services/custom-http";
 import config from "../../config/config";
 import {UserInfoType} from "../types/user-info.type";
+import {GetCategoryType} from "../types/get-category.type";
+import {DefaultResponseType} from "../types/default-response.type";
+import {DeleteCategoryType} from "../types/delete-category.type";
 
 export class Expenses {
-    private expensesElement: HTMLElement | null;
-    private incomeElement: HTMLElement | null;
-    private expensesTextElement: HTMLElement | null;
-    private incomeTextElement: HTMLElement | null;
-    private categoryButtonElement: HTMLElement | null;
-    private sidebarCategoryElement: HTMLElement | null;
-    private orderCollapseElement: HTMLElement | null;
-    private categorySvgElement: HTMLElement | null;
+    readonly expensesElement: HTMLElement | null;
+    readonly incomeElement: HTMLElement | null;
+    readonly expensesTextElement: HTMLElement | null;
+    readonly incomeTextElement: HTMLElement | null;
+    readonly categoryButtonElement: HTMLElement | null;
+    readonly sidebarCategoryElement: HTMLElement | null;
+    readonly orderCollapseElement: HTMLElement | null;
+    readonly categorySvgElement: HTMLElement | null;
     private buttonElements: NodeListOf<Element>;
-    private sidebarCategoryCollapseElements: HTMLElement | null;
+    readonly sidebarCategoryCollapseElements: HTMLElement | null;
     private collapseButtonElements: NodeListOf<Element>;
     private svgElements: NodeListOf<Element>;
 
-    private sidebarFinance: HTMLElement | null;
-    private sidebarFinanceText: HTMLElement | null;
-    private sidebarFinanceSvg: HTMLElement | null;
+    readonly sidebarFinance: HTMLElement | null;
+    readonly sidebarFinanceText: HTMLElement | null;
+    readonly sidebarFinanceSvg: HTMLElement | null;
 
-    private sidebarMain: HTMLElement | null;
-    private sidebarMainText: HTMLElement | null;
-    private sidebarMainSvg: HTMLElement | null;
+    readonly sidebarMain: HTMLElement | null;
+    readonly sidebarMainText: HTMLElement | null;
+    readonly sidebarMainSvg: HTMLElement | null;
 
     private popupExpenses: HTMLElement | null;
 
@@ -63,8 +66,8 @@ export class Expenses {
             location.href = '#/login'
         }
         try {
-            const result: Promise<any> = await CustomHttp.request(config.host + '/categories/expense');
-            if (result) {
+            const result: GetCategoryType[] | DefaultResponseType = await CustomHttp.request(config.host + '/categories/expense');
+            if (result as GetCategoryType[]) {
                 this.showExpenseElements(result)
             }
         } catch (error) {
@@ -72,10 +75,10 @@ export class Expenses {
         }
     }
 
-    private showExpenseElements(result: any): void {
+    private showExpenseElements(result: GetCategoryType[] | DefaultResponseType): void {
         const categoryItems: HTMLElement | null = document.getElementById('category-expense-items');
         if (categoryItems) {
-            result.forEach((item: any) => {
+            (result as GetCategoryType[]).forEach((item: any) => {
                 const categoryItem: HTMLElement | null = document.createElement('div');
                 categoryItem.className = 'category-item';
                 categoryItem.setAttribute('id', item.id)
@@ -114,8 +117,8 @@ export class Expenses {
             const editBtnElements: NodeListOf<Element> = document.querySelectorAll('.edit-btn-expenses')
             editBtnElements.forEach((item: any) => {
                 item.onclick = function () {
-                    const result = item.parentElement.previousElementSibling.textContent
-                    const resultId = item.parentElement.parentElement.id
+                    const result: string | null = item.parentElement.previousElementSibling.textContent
+                    const resultId: string | null = item.parentElement.parentElement.id
                     localStorage.setItem('BlockName', JSON.stringify(result))
                     localStorage.setItem('BlockId', JSON.stringify(resultId))
                 }
@@ -131,9 +134,9 @@ export class Expenses {
                     }
                     if (popupDeleteCategory) {
                         popupDeleteCategory.onclick = function () {
-                            let resultId: number | string = item.parentElement.parentElement.id
+                            let resultId: string | null = item.parentElement.parentElement.id
                             try {
-                                const result: any = CustomHttp.request(config.host + '/categories/expense/' + resultId, "DELETE");
+                                const result: DeleteCategoryType | DefaultResponseType  = CustomHttp.request(config.host + '/categories/expense/' + resultId, "DELETE");
                                 if (result) {
                                     location.href = '#/expenses'
                                 }
@@ -152,7 +155,7 @@ export class Expenses {
             item.classList.remove('active')
             item.classList.add('link-dark')
         })
-        this.svgElements.forEach((item: any) => {
+        this.svgElements.forEach((item:any) => {
             item.style.setProperty("fill", "black", "important")
         })
         this.collapseButtonElements.forEach(item => {

@@ -1,6 +1,8 @@
 import {CustomHttp} from "../services/custom-http";
 import config from "../../config/config";
 import {CreateCategoryIncome} from "./createCategoryIncome";
+import {PostOperationType} from "../types/post-operation.type";
+import {DefaultResponseType} from "../types/default-response.type";
 
 export class CreateCategoryExpenses {
     readonly inputNameCreateExpense: HTMLInputElement | null;
@@ -16,9 +18,9 @@ export class CreateCategoryExpenses {
         const that: CreateCategoryExpenses = this;
         if (this.createCategoryExpenseBtn) {
             this.createCategoryExpenseBtn.onclick = function () {
-                let categoryName = that.inputNameCreateExpense?.value;
+                let categoryName: string | undefined = that.inputNameCreateExpense?.value;
                 try {
-                    const result = CustomHttp.request(config.host + '/categories/expense', "POST", {
+                    const result: Promise<PostOperationType|DefaultResponseType> = CustomHttp.request(config.host + '/categories/expense', "POST", {
                         title: categoryName
                     });
                 } catch (error) {
