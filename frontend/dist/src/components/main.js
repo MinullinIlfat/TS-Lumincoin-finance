@@ -16,6 +16,7 @@ exports.Main = void 0;
 const auth_1 = require("../services/auth");
 const custom_http_1 = require("../services/custom-http");
 const config_1 = __importDefault(require("../../config/config"));
+const auto_1 = __importDefault(require("chart.js/auto"));
 class Main {
     constructor() {
         this.buttonElements = document.querySelectorAll('.button-element');
@@ -204,9 +205,9 @@ class Main {
                 incomeArrCategory.push(item.category);
             }
         });
-        Chart.defaults.global.defaultFontFamily = "Roboto-Medium";
-        Chart.defaults.global.defaultFontSize = 12;
-        Chart.defaults.global.defaultFontColor = "#000000";
+        // Chart.defaults.global.defaultFontFamily = "Roboto-Medium";
+        // Chart.defaults.global.defaultFontSize = 12;
+        // Chart.defaults.global.defaultFontColor = "#000000";
         let canvasIncome = this.incomeChart;
         if (canvasIncome) {
             canvasIncome.width = 414;
@@ -233,10 +234,12 @@ class Main {
                 }
             ]
         };
-        let incomeChartView = new Chart(this.incomeChart, {
-            type: 'pie',
-            data: incomeChartData
-        });
+        if (this.incomeChart) {
+            let incomeChartView = new auto_1.default(this.incomeChart, {
+                type: 'pie',
+                data: incomeChartData
+            });
+        }
         let expensesChartData = {
             labels: expenseArrCategory,
             datasets: [
@@ -255,10 +258,12 @@ class Main {
                 }
             ]
         };
-        let expensesChartView = new Chart(this.expensesChart, {
-            type: 'pie',
-            data: expensesChartData
-        });
+        if (this.expensesChart) {
+            let expensesChartView = new auto_1.default(this.expensesChart, {
+                type: 'pie',
+                data: expensesChartData
+            });
+        }
     }
     removeElement() {
         this.buttonElements.forEach(item => {
@@ -290,7 +295,7 @@ class Main {
                 let current = document.getElementsByClassName("button active");
                 if (current) {
                     current[0].className = current[0].className.replace(" active", "");
-                    this.className += " active";
+                    current[i].className += " active";
                 }
             });
         }

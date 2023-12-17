@@ -136,10 +136,10 @@ class ExpensesAndIncome {
                 this.buttonInterval.onclick = function () {
                     return __awaiter(this, void 0, void 0, function* () {
                         if (that.buttonIntervalFrom && that.buttonIntervalTo) {
-                            let from = that.buttonIntervalFrom.value.split('/');
-                            let to = that.buttonIntervalTo.value.split('/');
-                            from = from[2] + '-' + from[0] + '-' + from[1];
-                            to = to[2] + '-' + to[0] + '-' + to[1];
+                            let fromArr = that.buttonIntervalFrom.value.split('/');
+                            let toArr = that.buttonIntervalTo.value.split('/');
+                            let from = fromArr[2] + '-' + fromArr[0] + '-' + fromArr[1];
+                            let to = toArr[2] + '-' + toArr[0] + '-' + toArr[1];
                             try {
                                 const result = yield custom_http_1.CustomHttp.request(config_1.default.host + '/operations/?period=interval&dateFrom=' + from + '&dateTo=' + to);
                                 if (result) {
@@ -184,19 +184,20 @@ class ExpensesAndIncome {
         });
     }
     removeElement() {
-        this.buttonElements.forEach(item => {
+        this.buttonElements.forEach((item) => {
             item.classList.remove('active');
             item.classList.add('link-dark');
         });
         this.svgElements.forEach((item) => {
             item.style.setProperty("fill", "black", "important");
         });
-        this.collapseButtonElements.forEach(item => {
+        this.collapseButtonElements.forEach((item) => {
             item.classList.remove('nav-link', 'rounded');
             item.classList.add('nav-item');
         });
     }
     activeElement() {
+        // const that: ExpensesAndIncome = this;
         if (this.sidebarFinance) {
             this.sidebarFinance.classList.add('nav-link', 'active');
         }
@@ -211,7 +212,7 @@ class ExpensesAndIncome {
             this.btns[i].addEventListener("click", function () {
                 let current = document.getElementsByClassName("button active");
                 current[0].className = current[0].className.replace(" active", "");
-                this.className += " active";
+                current[i].className += " active";
                 //скопированный код
             });
         }

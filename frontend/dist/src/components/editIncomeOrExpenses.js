@@ -176,17 +176,17 @@ class EditIncomeOrExpenses {
         if (date) {
             date = date.replace(/[^0-9.]/gi, ' ');
             date = date.replace(/\s+/g, ' ').trim();
+            let dateArr = date.split('.');
+            date = dateArr[2] + '-' + dateArr[1] + '-' + dateArr[0];
         }
         if (comment) {
             comment = comment.replace(/[^а-яёa-z1-9]/gi, ' ');
             comment = comment.replace(/\s+/g, ' ').trim();
         }
-        date = date.split('.');
-        date = date[2] + '-' + date[1] + '-' + date[0];
         if (type === 'доход' && this.createTypeOperation) {
             this.createTypeOperation.value = 'income';
         }
-        else {
+        else if (this.createTypeOperation) {
             this.createTypeOperation.value = 'expense';
         }
         if (this.createAmountOperation) {

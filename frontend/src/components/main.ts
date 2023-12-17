@@ -4,7 +4,7 @@ import config from "../../config/config";
 import {UserInfoType} from "../types/user-info.type";
 import {GetOperationType} from "../types/get-operation.type";
 import {DefaultResponseType} from "../types/default-response.type";
-import Chart from "chart.js";
+import Chart from "chart.js/auto";
 
 export class Main {
     private buttonElements: NodeListOf<Element>;
@@ -220,9 +220,9 @@ export class Main {
             }
         })
 
-        Chart.defaults.global.defaultFontFamily = "Roboto-Medium";
-        Chart.defaults.global.defaultFontSize = 12;
-        Chart.defaults.global.defaultFontColor = "#000000";
+        // Chart.defaults.global.defaultFontFamily = "Roboto-Medium";
+        // Chart.defaults.global.defaultFontSize = 12;
+        // Chart.defaults.global.defaultFontColor = "#000000";
 
         let canvasIncome: HTMLElement | null = this.incomeChart;
         if (canvasIncome) {
@@ -252,10 +252,12 @@ export class Main {
                 }]
         };
 
-        let incomeChartView = new Chart(this.incomeChart, {
-            type: 'pie',
-            data: incomeChartData
-        });
+        if (this.incomeChart) {
+            let incomeChartView = new Chart((this.incomeChart as HTMLCanvasElement), {
+                type: 'pie',
+                data: incomeChartData
+            });
+        }
 
         let expensesChartData = {
             labels: expenseArrCategory,
@@ -275,10 +277,12 @@ export class Main {
                 }]
         };
 
-        let expensesChartView = new Chart(this.expensesChart, {
-            type: 'pie',
-            data: expensesChartData
-        });
+        if (this.expensesChart) {
+            let expensesChartView = new Chart((this.expensesChart as HTMLCanvasElement), {
+                type: 'pie',
+                data: expensesChartData
+            });
+        }
     }
 
     removeElement() {
