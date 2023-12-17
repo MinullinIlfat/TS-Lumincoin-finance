@@ -5,6 +5,8 @@ import {UserInfoType} from "../types/user-info.type";
 import {DeleteCategoryType} from "../types/delete-category.type";
 import {DefaultResponseType} from "../types/default-response.type";
 import {GetOperationType} from "../types/get-operation.type";
+import {Expenses} from "./expenses";
+
 
 export class ExpensesAndIncome {
     private buttonElements: NodeListOf<Element>;
@@ -93,7 +95,7 @@ export class ExpensesAndIncome {
             location.href = '#/login'
         }
         if (this.buttonAll) {
-            this.buttonAll.onclick = async function () {
+            this.buttonAll.onclick = async function ():Promise<void> {
                 try {
                     const result: GetOperationType[] | DefaultResponseType = await CustomHttp.request(config.host + '/operations/?period=all');
                     if (result as GetOperationType[]) {
@@ -105,7 +107,7 @@ export class ExpensesAndIncome {
             }
         }
         if (this.buttonWeek) {
-            this.buttonWeek.onclick = async function () {
+            this.buttonWeek.onclick = async function ():Promise<void> {
                 try {
                     const result: GetOperationType[] | DefaultResponseType = await CustomHttp.request(config.host + '/operations/?period=week');
                     if (result as GetOperationType[]) {
@@ -119,7 +121,7 @@ export class ExpensesAndIncome {
 
 
         if (this.buttonMonth) {
-            this.buttonMonth.onclick = async function () {
+            this.buttonMonth.onclick = async function ():Promise<void> {
                 try {
                     const result: GetOperationType[] | DefaultResponseType = await CustomHttp.request(config.host + '/operations/?period=month');
                     if (result as GetOperationType[]) {
@@ -132,7 +134,7 @@ export class ExpensesAndIncome {
         }
 
         if (this.buttonYear) {
-            this.buttonYear.onclick = async function () {
+            this.buttonYear.onclick = async function ():Promise<void> {
                 try {
                     const result: GetOperationType[] | DefaultResponseType = await CustomHttp.request(config.host + '/operations/?period=year');
                     if (result as GetOperationType[]) {
@@ -145,7 +147,7 @@ export class ExpensesAndIncome {
         }
 
         if (this.buttonToday) {
-            this.buttonToday.onclick = async function () {
+            this.buttonToday.onclick = async function ():Promise<void> {
                 try {
                     const result: GetOperationType[] | DefaultResponseType = await CustomHttp.request(config.host + '/operations/?period=today');
                     if (result as GetOperationType[]) {
@@ -160,13 +162,13 @@ export class ExpensesAndIncome {
 
 
         if (this.buttonInterval) {
-            this.buttonInterval.onclick = async function () {
+            this.buttonInterval.onclick = async function ():Promise<void> {
                 if (that.buttonIntervalFrom && that.buttonIntervalTo) {
-                    let from: string[] | null = (that.buttonIntervalFrom as HTMLInputElement).value.split('/')
-                    let to: string[] | null = (that.buttonIntervalTo as HTMLInputElement).value.split('/')
+                    let fromArr: string[] | null = (that.buttonIntervalFrom as HTMLInputElement).value.split('/');
+                    let toArr: string[] | null = (that.buttonIntervalTo as HTMLInputElement).value.split('/');
 
-                    from = from[2] + '-' + from[0] + '-' + from[1]
-                    to = to[2] + '-' + to[0] + '-' + to[1]
+                    let from = fromArr[2] + '-' + fromArr[0] + '-' + fromArr[1];
+                    let to = toArr[2] + '-' + toArr[0] + '-' + toArr[1];
 
                     try {
                         const result: GetOperationType[] | DefaultResponseType = await CustomHttp.request(config.host + '/operations/?period=interval&dateFrom=' + from + '&dateTo=' + to);
@@ -180,7 +182,7 @@ export class ExpensesAndIncome {
             }
         }
 
-        $(function () {
+        $(function ():void {
             let dateFormat = "mm/dd/yy",
                 from = $("#from")
                     .datepicker({
@@ -214,20 +216,21 @@ export class ExpensesAndIncome {
 
 
     private removeElement(): void {
-        this.buttonElements.forEach(item => {
+        this.buttonElements.forEach((item:Element) => {
             item.classList.remove('active')
             item.classList.add('link-dark')
         })
         this.svgElements.forEach((item: any) => {
             item.style.setProperty("fill", "black", "important")
         })
-        this.collapseButtonElements.forEach(item => {
+        this.collapseButtonElements.forEach((item:Element) => {
             item.classList.remove('nav-link', 'rounded')
             item.classList.add('nav-item')
         })
     }
 
     private activeElement(): void {
+        // const that: ExpensesAndIncome = this;
         if (this.sidebarFinance) {
             this.sidebarFinance.classList.add('nav-link', 'active');
         }
@@ -404,8 +407,8 @@ export class ExpensesAndIncome {
                         that.popupDeleteOperation.onclick = function () {
                             let resultId = item.parentElement.parentElement.id
                             try {
-                                const result: any = CustomHttp.request(config.host + '/operations/' + resultId, "DELETE");
-                                if (result) {
+                                const result: Promise<DeleteCategoryType | DefaultResponseType> = CustomHttp.request(config.host + '/operations/' + resultId, "DELETE");
+                                if (result as unknown) {
                                     location.href = '#/expensesAndIncome'
                                 }
                             } catch (error) {

@@ -7,7 +7,7 @@ import {DefaultResponseType} from "../types/default-response.type";
 import {PostOperationType} from "../types/post-operation.type";
 
 export class EditIncomeOrExpenses {
-    readonly createTypeOperation: HTMLInputElement | null;
+    readonly createTypeOperation: HTMLSelectElement | null;
     readonly createCategoryOperation: HTMLInputElement | null;
     readonly createAmountOperation: HTMLInputElement | null;
     readonly createDateOperation: HTMLElement | null;
@@ -15,7 +15,7 @@ export class EditIncomeOrExpenses {
     readonly createOperationSaveBtn: HTMLElement | null;
     private category: number | null;
     constructor() {
-        this.createTypeOperation = document.getElementById('create-type-operation') as HTMLInputElement;
+        this.createTypeOperation = document.getElementById('create-type-operation') as HTMLSelectElement;
         this.createCategoryOperation = document.getElementById('create-category-operation') as HTMLInputElement;
         this.createAmountOperation = document.getElementById('create-amount-operation') as HTMLInputElement;
         this.createDateOperation = document.getElementById('create-date-operation');
@@ -119,7 +119,7 @@ export class EditIncomeOrExpenses {
                 optionExp.innerText = itemExp.title
 
                 if (this.createTypeOperation) {
-                    let indexSelected: string | null = this.createTypeOperation.selectedIndex,
+                    let indexSelected = this.createTypeOperation.selectedIndex,
                         option = this.createTypeOperation.querySelectorAll('option')[indexSelected];
                     let selectedId: string | null = option.getAttribute('id');
 
@@ -188,6 +188,8 @@ export class EditIncomeOrExpenses {
         if (date) {
             date = date.replace(/[^0-9.]/gi, ' ');
             date = date.replace(/\s+/g, ' ').trim();
+            let dateArr: string[] | null = date.split('.')
+            date = dateArr[2] + '-' + dateArr [1] + '-' + dateArr[0]
         }
 
         if (comment) {
@@ -195,19 +197,16 @@ export class EditIncomeOrExpenses {
             comment = comment.replace(/\s+/g, ' ').trim();
         }
 
-        date = date.split('.')
-        date = date[2] + '-' + date [1] + '-' + date[0]
-
         if (type === 'доход' && this.createTypeOperation) {
-            (this.createTypeOperation as HTMLInputElement).value = 'income'
-        } else {
-            (this.createTypeOperation as HTMLInputElement).value = 'expense'
+            this.createTypeOperation.value = 'income'
+        } else if (this.createTypeOperation) {
+            this.createTypeOperation.value = 'expense'
         }
         if (this.createAmountOperation) {
             (this.createAmountOperation as HTMLInputElement).value = amount as string
         }
         if (this.createDateOperation) {
-            (this.createDateOperation as HTMLInputElement).value = date
+            (this.createDateOperation as HTMLInputElement).value = date as string
 
         }
         if (this.createCommentOperation) {
@@ -234,7 +233,7 @@ export class EditIncomeOrExpenses {
                     && that.createDateOperation && that.createCommentOperation) {
                     try {
                         const result: Promise<PostOperationType | DefaultResponseType> = CustomHttp.request(config.host + '/operations/' + operationId, "PUT", {
-                            type: (that.createTypeOperation as HTMLInputElement).value,
+                            type: that.createTypeOperation.value,
                             category_id: that.category,
                             amount: (that.createAmountOperation as HTMLInputElement).value,
                             date: (that.createDateOperation as HTMLInputElement).value,

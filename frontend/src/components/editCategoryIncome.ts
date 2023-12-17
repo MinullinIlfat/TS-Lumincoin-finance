@@ -3,6 +3,7 @@ import {CustomHttp} from "../services/custom-http";
 import config from "../../config/config";
 import {PutCategoryType} from "../types/put-category.type";
 import {DefaultResponseType} from "../types/default-response.type";
+import {UserInfoType} from "../types/user-info.type";
 
 export class EditCategoryIncome {
     readonly inputNameElement: HTMLInputElement | null;
@@ -36,7 +37,7 @@ export class EditCategoryIncome {
         }
         if (this.btnSaveElement) {
             this.btnSaveElement.onclick = function () {
-                const userInfo = Auth.getUserInfo();
+                const userInfo:UserInfoType | null = Auth.getUserInfo();
                 if (!userInfo) {
                     location.href = '#/login';
                 }

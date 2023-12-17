@@ -4,6 +4,7 @@ import config from "../../config/config";
 import {UserInfoType} from "../types/user-info.type";
 import {GetOperationType} from "../types/get-operation.type";
 import {DefaultResponseType} from "../types/default-response.type";
+import Chart from "chart.js";
 
 export class Main {
     private buttonElements: NodeListOf<Element>;
@@ -219,7 +220,6 @@ export class Main {
             }
         })
 
-
         Chart.defaults.global.defaultFontFamily = "Roboto-Medium";
         Chart.defaults.global.defaultFontSize = 12;
         Chart.defaults.global.defaultFontColor = "#000000";
@@ -310,7 +310,7 @@ export class Main {
 
         for (let i = 0; i < this.btns.length; i++) {
             this.btns[i].addEventListener("click", function () {
-                let current: HTMLElement | null = document.getElementsByClassName("button active");
+                let current: any = document.getElementsByClassName("button active");
                 if (current) {
                     current[0].className = current[0].className.replace(" active", "");
                     this.className += " active";

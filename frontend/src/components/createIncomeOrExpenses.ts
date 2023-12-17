@@ -7,7 +7,7 @@ import {DefaultResponseType} from "../types/default-response.type";
 import {PostOperationType} from "../types/post-operation.type";
 
 export class CreateIncomeOrExpenses {
-    readonly newCreateTypeOperation: HTMLInputElement | null;
+    readonly newCreateTypeOperation: HTMLSelectElement | null;
     readonly newCreateCategoryOperation: HTMLInputElement | null;
     private newCreateAmountOperation: HTMLInputElement | null;
     private newCreateDateOperation: HTMLInputElement | null;
@@ -16,7 +16,7 @@ export class CreateIncomeOrExpenses {
     private category: string | null;
 
     constructor() {
-        this.newCreateTypeOperation = document.getElementById('new-create-type-operation') as HTMLInputElement;
+        this.newCreateTypeOperation = document.getElementById('new-create-type-operation') as HTMLSelectElement;
         this.newCreateCategoryOperation = document.getElementById('new-create-category-operation') as HTMLInputElement;
         this.newCreateAmountOperation = document.getElementById('new-create-amount-operation') as HTMLInputElement;
         this.newCreateDateOperation = document.getElementById('new-create-date-operation') as HTMLInputElement;
@@ -45,7 +45,7 @@ export class CreateIncomeOrExpenses {
                 option.innerText = item.title;
 
                 if (this.newCreateTypeOperation && this.newCreateCategoryOperation) {
-                    let indexSelected: HTMLInputElement = this.newCreateTypeOperation.selectedIndex,
+                    let indexSelected = this.newCreateTypeOperation.selectedIndex,
                         options = this.newCreateTypeOperation.querySelectorAll('option')[indexSelected];
 
                     let selectedId = options.getAttribute('id');
