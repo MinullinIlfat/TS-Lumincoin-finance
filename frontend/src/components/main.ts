@@ -4,8 +4,7 @@ import config from "../../config/config";
 import {UserInfoType} from "../types/user-info.type";
 import {GetOperationType} from "../types/get-operation.type";
 import {DefaultResponseType} from "../types/default-response.type";
-import Chart from "chart.js/auto";
-
+import Chart from "chart.js";
 export class Main {
     private buttonElements: NodeListOf<Element>;
     private collapseButtonElements: NodeListOf<Element>;
@@ -234,6 +233,17 @@ export class Main {
         (canvasExpenses as HTMLInputElement).width = 414;
         (canvasExpenses as HTMLInputElement).height = 467;
 
+        let graphicIncome = Chart.Chart.getChart(canvasIncome as HTMLCanvasElement)
+        let graphicExpense = Chart.Chart.getChart(canvasExpenses as HTMLCanvasElement)
+        if (graphicIncome) {
+            graphicIncome.destroy()
+        }
+        if (graphicExpense) {
+            graphicExpense.destroy()
+        }
+
+
+
         let incomeChartData = {
             labels: incomeArrCategory,
             datasets: [
@@ -277,11 +287,12 @@ export class Main {
                 }]
         };
 
+
         if (this.expensesChart) {
-            let expensesChartView = new Chart((this.expensesChart as HTMLCanvasElement), {
+            let expensesChartView = new Chart(this.expensesChart, {
                 type: 'pie',
                 data: expensesChartData
-            });
+            })
         }
     }
 

@@ -6,7 +6,7 @@ if (profileFullNameElement) {
         if (exit) {
             if (exit.style.display === 'block') {
                 exit.style.display = 'none';
-            } else {
+            } else if (exit.style.display === 'none' || exit.style.display === null) {
                 exit.style.display = 'block';
             }
         }

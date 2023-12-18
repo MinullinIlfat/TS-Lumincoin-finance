@@ -1,1 +1,124 @@
-<!doctype html><html lang="en"><head><meta charset="UTF-8"><title id="title">Главная</title><link rel="stylesheet" href="styles/jquery-ui.min.css"><link rel="stylesheet" href="styles/jquery-ui.theme.min.css"><link rel="stylesheet" href="styles/bootstrap.min.css"><link rel="stylesheet" href="styles/common.css"><link rel="stylesheet" id="styles" href="styles/index.css"><meta name="viewport" content="width-device-width,initial-scale=1"><script defer="defer" src="main.js"></script></head><body><section class="d-flex"><div id="sidebar" class="sidebar d-flex flex-column flex-shrink-0 pe-3 ps-3 bg-light" style="width: 235px;"><a href="#/" class="logo text-center"><img src="images/Logo.png" alt="Логотип"></a><hr><ul class="nav nav-pills flex-column mb-auto"><li class="sidebar-main nav-item p-0" id="sidebar-main"><a href="#/" id="sidebar-main-text" class="button-element nav-link active align-items-center d-flex" aria-current="page"><svg id="sidebar-main-svg" class="svg-element main-svg me-2" width="15" height="14" viewBox="0 0 15 14" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M1.5 12.3964V5.89644H2.5V12.3964C2.5 12.6726 2.72386 12.8964 3 12.8964H12C12.2761 12.8964 12.5 12.6726 12.5 12.3964V5.89644H13.5V12.3964C13.5 13.2249 12.8284 13.8964 12 13.8964H3C2.17157 13.8964 1.5 13.2249 1.5 12.3964Z"/><path fill-rule="evenodd" clip-rule="evenodd" d="M12.5 1.39644V4.89644L10.5 2.89644V1.39644C10.5 1.1203 10.7239 0.89644 11 0.89644H12C12.2761 0.89644 12.5 1.1203 12.5 1.39644Z"/><path fill-rule="evenodd" clip-rule="evenodd" d="M6.79289 0.39644C7.18342 0.00591397 7.81658 0.00591606 8.20711 0.39644L14.8536 7.04289C15.0488 7.23815 15.0488 7.55473 14.8536 7.74999C14.6583 7.94526 14.3417 7.94526 14.1464 7.74999L7.5 1.10355L0.853553 7.74999C0.658291 7.94526 0.341709 7.94526 0.146447 7.74999C-0.0488155 7.55473 -0.0488155 7.23815 0.146447 7.04289L6.79289 0.39644Z"/></svg> Главная</a></li><li class="sidebar-finance p-0" id="sidebar-finance"><a href="#/expensesAndIncome" id="sidebar-finance-text" class="button-element pe-1 nav-link link-dark align-items-center d-flex"><svg class="me-2" id="sidebar-finance-svg" width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M11 15C13.2091 15 15 13.2091 15 11C15 8.79086 13.2091 7 11 7C8.79086 7 7 8.79086 7 11C7 13.2091 8.79086 15 11 15ZM16 11C16 13.7614 13.7614 16 11 16C8.23858 16 6 13.7614 6 11C6 8.23858 8.23858 6 11 6C13.7614 6 16 8.23858 16 11Z"/><path d="M9.4375 11.9444C9.48519 12.5403 9.95568 13.0049 10.8013 13.0599V13.5H11.1764V13.0568C12.0507 12.9957 12.5625 12.5281 12.5625 11.8496C12.5625 11.2323 12.1715 10.9144 11.4721 10.7494L11.1764 10.6791V9.48105C11.5516 9.52384 11.79 9.72861 11.8472 10.0128H12.5053C12.4576 9.43826 11.9648 8.989 11.1764 8.9401V8.5H10.8013V8.94927C10.0542 9.02262 9.54559 9.47188 9.54559 10.1076C9.54559 10.6699 9.92389 11.0275 10.5533 11.1742L10.8013 11.2353V12.5067C10.4166 12.4487 10.1623 12.2378 10.1051 11.9444H9.4375ZM10.7981 10.5905C10.4294 10.5049 10.2291 10.3307 10.2291 10.0678C10.2291 9.77445 10.4453 9.5544 10.8013 9.49022V10.5905H10.7981ZM11.2305 11.3362C11.6787 11.4401 11.8854 11.6082 11.8854 11.9046C11.8854 12.2439 11.6279 12.4762 11.1764 12.5189V11.324L11.2305 11.3362Z"/><path d="M1 0C0.447715 0 0 0.447716 0 1V9C0 9.55229 0.447715 10 1 10H5.08296C5.1407 9.65585 5.22773 9.32163 5.34141 9H3C3 7.89543 2.10457 7 1 7V3C2.10457 3 3 2.10457 3 1H13C13 2.10457 13.8954 3 15 3V6.52779C15.3801 6.86799 15.7166 7.25594 16 7.68221V1C16 0.447715 15.5523 0 15 0H1Z"/><path d="M9.9983 5.08325C9.99943 5.05564 10 5.02789 10 5C10 3.89543 9.10457 3 8 3C6.89543 3 6 3.89543 6 5C6 5.6845 6.34387 6.28869 6.86829 6.64924C7.71486 5.84504 8.79591 5.28533 9.9983 5.08325Z"/></svg> Доходы & Расходы</a></li><li class="sidebar-category mb-1" id="sidebar-category"><div class="sidebar-category-collapse p-0 collapse-button" id="sidebar-category-collapse"><a href="#" id="category-button" class="button-element nav-link link-dark d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#orders-collapse" aria-expanded="false">Категории <svg id="category-svg" width="7" height="14" viewBox="0 0 7 14" xmlns="http://www.w3.org/2000/svg" aria-expanded="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M0.145063 13.3539C0.051021 13.2601 -0.00183105 13.1327 -0.00183105 12.9999C-0.00183105 12.867 0.051021 12.7397 0.145063 12.6459L5.79206 6.99987L0.145063 1.35387C0.0185907 1.2274 -0.0308022 1.04306 0.0154897 0.8703C0.0617817 0.697536 0.196726 0.562593 0.36949 0.5163C0.542254 0.470008 0.726591 0.519401 0.853063 0.645873L6.85306 6.64587C6.9471 6.73968 6.99996 6.86705 6.99996 6.99987C6.99996 7.1327 6.9471 7.26007 6.85306 7.35387L0.853063 13.3539C0.759259 13.4479 0.63189 13.5008 0.499063 13.5008C0.366235 13.5008 0.238867 13.4479 0.145063 13.3539Z"/></svg></a></div><div class="collapse" id="orders-collapse" style=""><ul class="button-element collapse-button link-dark p-1 btn-toggle-nav list-unstyled fw-normal" id="income"><li><a href="#/income" id="income-text" class="button-element small-button link-dark d-inline-flex text-decoration-none rounded pt-2 pb-2 ps-3 pe-2">Доходы</a></li></ul><ul class="button-element collapse-button p-1 btn-toggle-nav list-unstyled fw-normal" id="expenses"><li><a href="#/expenses" id="expenses-text" class="button-element small-button link-dark d-inline-flex text-decoration-none rounded pt-2 pb-2 ps-3 pe-2">Расходы</a></li></ul></div></li></ul><div class="sidebar-balance p-3">Баланс: <span class="">500$</span></div><hr><div class="sidebar-dropdown"><a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"><div class="sidebar-dropdown-icon"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 8C9.06087 8 10.0783 7.57857 10.8284 6.82843C11.5786 6.07828 12 5.06087 12 4C12 2.93913 11.5786 1.92172 10.8284 1.17157C10.0783 0.421427 9.06087 0 8 0C6.93913 0 5.92172 0.421427 5.17157 1.17157C4.42143 1.92172 4 2.93913 4 4C4 5.06087 4.42143 6.07828 5.17157 6.82843C5.92172 7.57857 6.93913 8 8 8ZM10.6667 4C10.6667 4.70724 10.3857 5.38552 9.88562 5.88562C9.38552 6.38572 8.70724 6.66667 8 6.66667C7.29276 6.66667 6.61448 6.38572 6.11438 5.88562C5.61428 5.38552 5.33333 4.70724 5.33333 4C5.33333 3.29276 5.61428 2.61448 6.11438 2.11438C6.61448 1.61428 7.29276 1.33333 8 1.33333C8.70724 1.33333 9.38552 1.61428 9.88562 2.11438C10.3857 2.61448 10.6667 3.29276 10.6667 4ZM16 14.6667C16 16 14.6667 16 14.6667 16H1.33333C1.33333 16 0 16 0 14.6667C0 13.3333 1.33333 9.33333 8 9.33333C14.6667 9.33333 16 13.3333 16 14.6667ZM14.6667 14.6613C14.6653 14.3333 14.4613 13.3467 13.5573 12.4427C12.688 11.5733 11.052 10.6667 8 10.6667C4.94667 10.6667 3.312 11.5733 2.44267 12.4427C1.53867 13.3467 1.336 14.3333 1.33333 14.6613H14.6667Z" fill="#6C757D"/></svg></div><strong class="sidebar-dropdown-name" id="profile-full-name">Имя пользователя</strong> </a><a href="#/logout" class="sidebar-dropdown-name-exit" id="sidebar-dropdown-name-exit">Выйти</a></div></div><div id="content"></div></section><script src="scripts/code.jquery.com_jquery-3.7.0.min.js"></script><script src="scripts/jquery-ui.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script><script src="scripts/bootstrap.min.js"></script><script src="./src/components/common.js"></script><script src="./src/components/main.js" type="module"></script><script src="dist/main.js" type="module"></script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title id="title">Главная</title>
+    <link rel="stylesheet" href="styles/jquery-ui.min.css">
+    <link rel="stylesheet" href="styles/jquery-ui.theme.min.css">
+    <link rel="stylesheet" href="styles/bootstrap.min.css">
+
+    <link rel="stylesheet" href="styles/common.css">
+    <link rel="stylesheet" id="styles" href="styles/index.css">
+    <meta name="viewport" content="width-device-width, initial-scale=1.0">
+<script defer src="main.js"></script></head>
+<body>
+
+<section class="d-flex">
+    <div id="sidebar" class="sidebar d-flex flex-column flex-shrink-0 pe-3 ps-3 bg-light" style="width: 235px;">
+        <a href="#/" class="logo text-center">
+            <img src="images/Logo.png" alt="Логотип">
+        </a>
+        <hr>
+        <ul class="nav nav-pills flex-column mb-auto">
+            <li class="sidebar-main nav-item p-0" id="sidebar-main">
+                <a href="#/" id="sidebar-main-text" class="button-element nav-link active align-items-center d-flex"
+                   aria-current="page">
+                    <svg id="sidebar-main-svg" class="svg-element main-svg me-2" width="15" height="14"
+                         viewBox="0 0 15 14"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                              d="M1.5 12.3964V5.89644H2.5V12.3964C2.5 12.6726 2.72386 12.8964 3 12.8964H12C12.2761 12.8964 12.5 12.6726 12.5 12.3964V5.89644H13.5V12.3964C13.5 13.2249 12.8284 13.8964 12 13.8964H3C2.17157 13.8964 1.5 13.2249 1.5 12.3964Z"
+                        />
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                              d="M12.5 1.39644V4.89644L10.5 2.89644V1.39644C10.5 1.1203 10.7239 0.89644 11 0.89644H12C12.2761 0.89644 12.5 1.1203 12.5 1.39644Z"
+                        />
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                              d="M6.79289 0.39644C7.18342 0.00591397 7.81658 0.00591606 8.20711 0.39644L14.8536 7.04289C15.0488 7.23815 15.0488 7.55473 14.8536 7.74999C14.6583 7.94526 14.3417 7.94526 14.1464 7.74999L7.5 1.10355L0.853553 7.74999C0.658291 7.94526 0.341709 7.94526 0.146447 7.74999C-0.0488155 7.55473 -0.0488155 7.23815 0.146447 7.04289L6.79289 0.39644Z"
+                        />
+                    </svg>
+                    Главная
+                </a>
+            </li>
+            <li class="sidebar-finance p-0" id="sidebar-finance">
+                <a href="#/expensesAndIncome" id="sidebar-finance-text"
+                   class="button-element pe-1 nav-link link-dark align-items-center d-flex">
+                    <svg class="me-2" id="sidebar-finance-svg" width="16" height="16" viewBox="0 0 16 16"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                              d="M11 15C13.2091 15 15 13.2091 15 11C15 8.79086 13.2091 7 11 7C8.79086 7 7 8.79086 7 11C7 13.2091 8.79086 15 11 15ZM16 11C16 13.7614 13.7614 16 11 16C8.23858 16 6 13.7614 6 11C6 8.23858 8.23858 6 11 6C13.7614 6 16 8.23858 16 11Z"
+                        />
+                        <path d="M9.4375 11.9444C9.48519 12.5403 9.95568 13.0049 10.8013 13.0599V13.5H11.1764V13.0568C12.0507 12.9957 12.5625 12.5281 12.5625 11.8496C12.5625 11.2323 12.1715 10.9144 11.4721 10.7494L11.1764 10.6791V9.48105C11.5516 9.52384 11.79 9.72861 11.8472 10.0128H12.5053C12.4576 9.43826 11.9648 8.989 11.1764 8.9401V8.5H10.8013V8.94927C10.0542 9.02262 9.54559 9.47188 9.54559 10.1076C9.54559 10.6699 9.92389 11.0275 10.5533 11.1742L10.8013 11.2353V12.5067C10.4166 12.4487 10.1623 12.2378 10.1051 11.9444H9.4375ZM10.7981 10.5905C10.4294 10.5049 10.2291 10.3307 10.2291 10.0678C10.2291 9.77445 10.4453 9.5544 10.8013 9.49022V10.5905H10.7981ZM11.2305 11.3362C11.6787 11.4401 11.8854 11.6082 11.8854 11.9046C11.8854 12.2439 11.6279 12.4762 11.1764 12.5189V11.324L11.2305 11.3362Z"
+                        />
+                        <path d="M1 0C0.447715 0 0 0.447716 0 1V9C0 9.55229 0.447715 10 1 10H5.08296C5.1407 9.65585 5.22773 9.32163 5.34141 9H3C3 7.89543 2.10457 7 1 7V3C2.10457 3 3 2.10457 3 1H13C13 2.10457 13.8954 3 15 3V6.52779C15.3801 6.86799 15.7166 7.25594 16 7.68221V1C16 0.447715 15.5523 0 15 0H1Z"
+                        />
+                        <path d="M9.9983 5.08325C9.99943 5.05564 10 5.02789 10 5C10 3.89543 9.10457 3 8 3C6.89543 3 6 3.89543 6 5C6 5.6845 6.34387 6.28869 6.86829 6.64924C7.71486 5.84504 8.79591 5.28533 9.9983 5.08325Z"
+                        />
+                    </svg>
+                    Доходы & Расходы
+                </a>
+            </li>
+            <li class="sidebar-category mb-1" id="sidebar-category">
+                <div class="sidebar-category-collapse p-0 collapse-button" id="sidebar-category-collapse">
+                    <a href="#" id="category-button"
+                       class="button-element nav-link link-dark d-inline-flex align-items-center rounded border-0 collapsed"
+                       data-bs-toggle="collapse" data-bs-target="#orders-collapse" aria-expanded="false">
+                        Категории
+                        <svg id="category-svg" width="7" height="14" viewBox="0 0 7 14"
+                             xmlns="http://www.w3.org/2000/svg"
+                             aria-expanded="true">
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                  d="M0.145063 13.3539C0.051021 13.2601 -0.00183105 13.1327 -0.00183105 12.9999C-0.00183105 12.867 0.051021 12.7397 0.145063 12.6459L5.79206 6.99987L0.145063 1.35387C0.0185907 1.2274 -0.0308022 1.04306 0.0154897 0.8703C0.0617817 0.697536 0.196726 0.562593 0.36949 0.5163C0.542254 0.470008 0.726591 0.519401 0.853063 0.645873L6.85306 6.64587C6.9471 6.73968 6.99996 6.86705 6.99996 6.99987C6.99996 7.1327 6.9471 7.26007 6.85306 7.35387L0.853063 13.3539C0.759259 13.4479 0.63189 13.5008 0.499063 13.5008C0.366235 13.5008 0.238867 13.4479 0.145063 13.3539Z"
+                            />
+                        </svg>
+                    </a>
+                </div>
+                <div class="collapse" id="orders-collapse" style="">
+                    <ul class="button-element collapse-button link-dark p-1 btn-toggle-nav list-unstyled fw-normal"
+                        id="income">
+                        <li><a href="#/income" id="income-text"
+                               class="button-element small-button link-dark d-inline-flex text-decoration-none rounded pt-2 pb-2 ps-3 pe-2">Доходы</a>
+                        </li>
+                    </ul>
+                    <ul class="button-element collapse-button p-1 btn-toggle-nav list-unstyled fw-normal" id="expenses">
+                        <li><a href="#/expenses" id="expenses-text"
+                               class="button-element small-button link-dark d-inline-flex text-decoration-none rounded pt-2 pb-2 ps-3 pe-2">Расходы</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+        <div class="sidebar-balance p-3">
+            Баланс: <span class="">500$</span>
+        </div>
+        <hr>
+        <div class="sidebar-dropdown">
+            <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle"
+               data-bs-toggle="dropdown" aria-expanded="false">
+                <div class="sidebar-dropdown-icon">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M8 8C9.06087 8 10.0783 7.57857 10.8284 6.82843C11.5786 6.07828 12 5.06087 12 4C12 2.93913 11.5786 1.92172 10.8284 1.17157C10.0783 0.421427 9.06087 0 8 0C6.93913 0 5.92172 0.421427 5.17157 1.17157C4.42143 1.92172 4 2.93913 4 4C4 5.06087 4.42143 6.07828 5.17157 6.82843C5.92172 7.57857 6.93913 8 8 8ZM10.6667 4C10.6667 4.70724 10.3857 5.38552 9.88562 5.88562C9.38552 6.38572 8.70724 6.66667 8 6.66667C7.29276 6.66667 6.61448 6.38572 6.11438 5.88562C5.61428 5.38552 5.33333 4.70724 5.33333 4C5.33333 3.29276 5.61428 2.61448 6.11438 2.11438C6.61448 1.61428 7.29276 1.33333 8 1.33333C8.70724 1.33333 9.38552 1.61428 9.88562 2.11438C10.3857 2.61448 10.6667 3.29276 10.6667 4ZM16 14.6667C16 16 14.6667 16 14.6667 16H1.33333C1.33333 16 0 16 0 14.6667C0 13.3333 1.33333 9.33333 8 9.33333C14.6667 9.33333 16 13.3333 16 14.6667ZM14.6667 14.6613C14.6653 14.3333 14.4613 13.3467 13.5573 12.4427C12.688 11.5733 11.052 10.6667 8 10.6667C4.94667 10.6667 3.312 11.5733 2.44267 12.4427C1.53867 13.3467 1.336 14.3333 1.33333 14.6613H14.6667Z"
+                              fill="#6C757D"/>
+                    </svg>
+                </div>
+                <strong class="sidebar-dropdown-name" id="profile-full-name">Имя пользователя</strong>
+            </a>
+            <a href="#/logout" class="sidebar-dropdown-name-exit d-none"
+               id="sidebar-dropdown-name-exit">Выйти</a>
+        </div>
+    </div>
+    <div id="content">
+
+    </div>
+</section>
+
+<script src="scripts/code.jquery.com_jquery-3.7.0.min.js"></script>
+<script src="scripts/jquery-ui.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
+<script src="scripts/bootstrap.min.js"></script>
+
+<script src="src/components/common.ts"></script>
+<script src="src/components/main.ts" type="module"></script>
+<script src="dist/main.js" type="module"></script>
+
+</body>
+</html>
