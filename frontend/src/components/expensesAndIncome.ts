@@ -244,7 +244,7 @@ export class ExpensesAndIncome {
         }
 
         for (let i = 0; i < this.btns.length; i++) {
-            this.btns[i].addEventListener("click", function () {
+            this.btns[i].addEventListener("click", function (this:any) {
                 let current = document.getElementsByClassName("button active");
                 current[0].className = current[0].className.replace(" active", "");
                 this.className += " active";

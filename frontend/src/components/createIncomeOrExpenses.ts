@@ -13,7 +13,7 @@ export class CreateIncomeOrExpenses {
     private newCreateDateOperation: HTMLInputElement | null;
     private newCreateCommentOperation: HTMLInputElement | null;
     readonly saveNewCreateOperation: HTMLElement | null;
-    private category: string | null;
+    private category: number | null;
 
     constructor() {
         this.newCreateTypeOperation = document.getElementById('new-create-type-operation') as HTMLSelectElement;
@@ -27,7 +27,7 @@ export class CreateIncomeOrExpenses {
         this.Categories();
     }
 
-    private async Categories(): Promise<void> {
+    private async Categories(): Promise<any> {
         const userInfo: UserInfoType | null = Auth.getUserInfo();
         if (!userInfo) {
             location.href = '#/login';
@@ -35,7 +35,6 @@ export class CreateIncomeOrExpenses {
         try {
             const result: GetCategoryType[] | DefaultResponseType = await CustomHttp.request(config.host + '/categories/income');
             if (result as GetCategoryType[]) {
-                this.createNewOperation();
             }
             (result as GetCategoryType[]).forEach(item => {
                 const option: HTMLElement | null = document.createElement('option');
@@ -68,8 +67,8 @@ export class CreateIncomeOrExpenses {
                     this.newCreateCategoryOperation.addEventListener('change', (e) => {
                         (result as GetCategoryType[]).forEach((item: GetCategoryType) => {
                             if (item.title && this.newCreateCategoryOperation && this.newCreateCategoryOperation.value === item.title) {
-                                this.category = item.id.toString();
-                                // return this.category;
+                                this.category = item.id;
+                                return this.category;
                             }
                         })
                     })
@@ -78,7 +77,7 @@ export class CreateIncomeOrExpenses {
             })
 
             const resultExpense: GetCategoryType[] | DefaultResponseType = await CustomHttp.request(config.host + '/categories/expense');
-            this.createNewOperation();
+
             (resultExpense as GetCategoryType[]).forEach((itemExp: GetCategoryType) => {
                 const optionExp: HTMLElement | null = document.createElement('option');
                 optionExp.setAttribute('value', itemExp.title);
@@ -112,8 +111,8 @@ export class CreateIncomeOrExpenses {
                     this.newCreateCategoryOperation.addEventListener('change', (e) => {
                         (resultExpense as GetCategoryType[]).forEach(item => {
                             if (item.title && this.newCreateCategoryOperation && this.newCreateCategoryOperation.value === item.title) {
-                                this.category = item.id.toString();
-                                // return this.category;
+                                this.category = item.id;
+                                return this.category;
                             }
                         })
                     })
@@ -122,6 +121,7 @@ export class CreateIncomeOrExpenses {
         } catch (error) {
             console.log(error);
         }
+        this.createNewOperation();
     }
 
     private createNewOperation(): void {
@@ -133,7 +133,7 @@ export class CreateIncomeOrExpenses {
                     location.href = '#/login';
                 }
                 if (that.newCreateTypeOperation && that.newCreateAmountOperation
-                    && that.newCreateDateOperation && that.newCreateCommentOperation) {
+                    && that.newCreateDateOperation && that.newCreateCommentOperation && that.category) {
                     try {
                         const result: Promise<PostOperationType | DefaultResponseType> = CustomHttp.request(config.host + '/operations', "POST", {
                             type: that.newCreateTypeOperation.value,

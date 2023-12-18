@@ -20,10 +20,9 @@ export class Auth {
             });
             if (response && response.status === 200) {
                 const result: RefreshResponseType | null = await response.json();
-                if (result && !result.error && result.accessToken && result.refreshToken) {
-                    this.setTokens(result.accessToken, result.refreshToken);
-                    // this.setTokens(result.tokens.accessToken, result.tokens.refreshToken);
-                    // не видит .tokens
+                if (result && !result.error && result.tokens.accessToken && result.tokens.refreshToken) {
+                    // this.setTokens(result.accessToken, result.refreshToken);
+                    this.setTokens(result.tokens.accessToken, result.tokens.refreshToken);
                     return true;
                 }
             }

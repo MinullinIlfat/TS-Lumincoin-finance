@@ -14,6 +14,7 @@ export class EditIncomeOrExpenses {
     readonly createCommentOperation: HTMLInputElement | null;
     readonly createOperationSaveBtn: HTMLElement | null;
     private category: number | null;
+
     constructor() {
         this.createTypeOperation = document.getElementById('create-type-operation') as HTMLSelectElement;
         this.createCategoryOperation = document.getElementById('create-category-operation') as HTMLInputElement;
@@ -27,7 +28,7 @@ export class EditIncomeOrExpenses {
         this.Categories()
     }
 
-    private async Categories():Promise<void> {
+    private async Categories(): Promise<void> {
         const userInfo: UserInfoType | null = Auth.getUserInfo();
         if (!userInfo) {
             location.href = '#/login'
@@ -49,7 +50,7 @@ export class EditIncomeOrExpenses {
             const result: GetCategoryType[] | DefaultResponseType = await CustomHttp.request(config.host + '/categories/income');
             if (result) {
                 (result as GetCategoryType[]).forEach((item: GetCategoryType) => {
-                    const option:HTMLElement | null = document.createElement('option')
+                    const option: HTMLElement | null = document.createElement('option')
                     option.setAttribute('value', item.title);
                     option.setAttribute('id', item.id.toString());
                     option.className = 'option-element';
@@ -58,13 +59,19 @@ export class EditIncomeOrExpenses {
                     if (this.createTypeOperation) {
                         let indexSelected = this.createTypeOperation.selectedIndex,
                             options = this.createTypeOperation.querySelectorAll('option')[indexSelected];
+                        let selectedId: string | null = options.getAttribute('id');
 
-                        let selectedId = options.getAttribute('id');
-                        if (selectedId === 'one') {
+                        if (type === 'доход') {
                             option.style.display = 'block'
                         } else {
                             option.style.display = 'none'
                         }
+
+                        // if (selectedId === 'one') {
+                        //     option.style.display = 'block'
+                        // } else {
+                        //     option.style.display = 'none'
+                        // }
 
                         if (this.createCategoryOperation) {
                             this.createCategoryOperation.appendChild(option)
@@ -83,20 +90,18 @@ export class EditIncomeOrExpenses {
                 })
 
                 if (type === 'доход') {
-                    (result as GetCategoryType[]).forEach((item:GetCategoryType) => {
+                    (result as GetCategoryType[]).forEach((item: GetCategoryType) => {
                         if (item.title === category && this.createCategoryOperation) {
                             this.createCategoryOperation.value = category
                             this.category = item.id
-                            // return this.category
                         }
                     })
                 }
                 if (this.createCategoryOperation) {
                     this.createCategoryOperation.addEventListener('change', (e) => {
-                        (result as GetCategoryType[]).forEach((item:GetCategoryType) => {
-                            if (item.title && this.createCategoryOperation &&this.createCategoryOperation.value === item.title) {
+                        (result as GetCategoryType[]).forEach((item: GetCategoryType) => {
+                            if (item.title && this.createCategoryOperation && this.createCategoryOperation.value === item.title) {
                                 this.category = item.id
-                                // return this.category
                             }
                         })
                     })
@@ -105,13 +110,14 @@ export class EditIncomeOrExpenses {
 
             const resultExpense: GetCategoryType[] | DefaultResponseType = await CustomHttp.request(config.host + '/categories/expense');
             if (type === 'доход') {
-                (resultExpense as GetCategoryType[]).forEach((item:GetCategoryType) => {
+                (resultExpense as GetCategoryType[]).forEach((item: GetCategoryType) => {
                     if (item.title === category && this.createCategoryOperation) {
                         (this.createCategoryOperation as HTMLInputElement).value = item.title
+                        console.log(item.title)
                     }
                 })
             }
-            (resultExpense as GetCategoryType[]).forEach((itemExp:GetCategoryType) => {
+            (resultExpense as GetCategoryType[]).forEach((itemExp: GetCategoryType) => {
                 const optionExp: HTMLElement | null = document.createElement('option')
                 optionExp.setAttribute('value', itemExp.title);
                 optionExp.setAttribute('id', itemExp.id.toString());
@@ -121,13 +127,19 @@ export class EditIncomeOrExpenses {
                 if (this.createTypeOperation) {
                     let indexSelected = this.createTypeOperation.selectedIndex,
                         option = this.createTypeOperation.querySelectorAll('option')[indexSelected];
+                    // console.log(this.createTypeOperation.lastElementChild)
                     let selectedId: string | null = option.getAttribute('id');
 
-                    if (selectedId === 'two') {
+                    if (type === 'расход') {
                         optionExp.style.display = 'block'
                     } else {
                         optionExp.style.display = 'none'
                     }
+                    // if (selectedId === 'two') {
+                    //     optionExp.style.display = 'block'
+                    // } else {
+                    //     optionExp.style.display = 'none'
+                    // }
 
                     if (this.createCategoryOperation) {
                         this.createCategoryOperation.appendChild(optionExp)
@@ -215,7 +227,7 @@ export class EditIncomeOrExpenses {
 
     }
 
-    private editOperation():void {
+    private editOperation(): void {
         const that: EditIncomeOrExpenses = this
         let operationId: string | null = localStorage.getItem('OperationId')
         if (operationId) {

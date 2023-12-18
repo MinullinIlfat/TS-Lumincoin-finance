@@ -1,6 +1,8 @@
 export type RefreshResponseType = {
-    accessToken?:string,
-    refreshToken?:string,
+    tokens: {
+        accessToken?:string | null,
+        refreshToken?:string | null,
+    },
     error: boolean,
     message: string,
 }

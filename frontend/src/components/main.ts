@@ -76,7 +76,7 @@ export class Main {
             location.href = '#/login'
         }
         if (this.buttonAll) {
-            this.buttonAll.onclick = async function ():Promise<void> {
+            this.buttonAll.onclick = async function ():Promise<any> {
                 try {
                     const result: GetOperationType[] | DefaultResponseType = await CustomHttp.request(config.host + '/operations/?period=all');
                     if (result as GetOperationType[]) {
@@ -313,7 +313,7 @@ export class Main {
         }
 
         for (let i = 0; i < this.btns.length; i++) {
-            this.btns[i].addEventListener("click", function () {
+            this.btns[i].addEventListener("click", function (this:any) {
                 let current: any = document.getElementsByClassName("button active");
                 if (current) {
                     current[0].className = current[0].className.replace(" active", "");
