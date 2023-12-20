@@ -5,6 +5,13 @@ import {UserInfoType} from "../types/user-info.type";
 import {GetOperationType} from "../types/get-operation.type";
 import {DefaultResponseType} from "../types/default-response.type";
 import Chart from "chart.js/auto";
+const bootstrap = require('bootstrap')
+
+let mainSvgElement: HTMLElement | null = document.querySelector('.main-svg');
+if (mainSvgElement) {
+    mainSvgElement.style.fill = 'white';
+}
+
 export class Main {
     private buttonElements: NodeListOf<Element>;
     private collapseButtonElements: NodeListOf<Element>;
@@ -33,7 +40,6 @@ export class Main {
     private buttonIntervalTo: HTMLInputElement | null;
 
     private btns: NodeListOf<Element>;
-
     constructor() {
         this.buttonElements = document.querySelectorAll('.button-element')
         this.collapseButtonElements = document.querySelectorAll('.collapse-button')
@@ -339,7 +345,6 @@ export class Main {
                 tableItem.remove()
             }
         })
-
     }
 
     private inactive(): void {

@@ -76,6 +76,11 @@
     color: #0D6EFD;
 }
 
+.sidebar-dropdown button {
+    border: 0 !important;
+    background: rgba(var(--bs-light-rgb),var(--bs-bg-opacity))!important;;
+}
+
 .sidebar-dropdown-icon {
     width: 36px;
     height: 36px;
@@ -92,13 +97,12 @@
 }
 
 .sidebar-dropdown-name-exit {
-    margin: 10px 0 0 10px;
+    margin-left: 20px;
     color: white;
-    padding: 1px 5px;
+    padding: 2px 50px;
     border-radius: 10px;
     background: #0D6EFD;
     border: 0;
-    display: none;
     text-decoration: none;
     text-align: center;
 }
